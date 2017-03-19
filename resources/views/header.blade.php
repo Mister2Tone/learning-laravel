@@ -9,16 +9,19 @@
 
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
+                    <li class="hidden active">
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
+                        <a href="#portfolio" style="display:none;">Portfolio</a>
                         <a href="{{ url('/portfolio') }}">Portfolio</a>
                     </li>
                     <li class="page-scroll">
+                        <a href="#about" style="display:none;">About</a>
                         <a href="{{ url('/about') }}">About</a>
                     </li>
                     <li class="page-scroll">
+                        <a href="#contact" style="display:none;">Contact</a>
                         <a href="{{ url('contact') }}">Contact</a>
                     </li>
                 </ul>
