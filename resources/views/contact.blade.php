@@ -12,36 +12,48 @@
                 </div>
             </div>
             <div class="row">
-            	<div class="col-lg-offset-5 col-lg-2 col-lg-offset-5 text-center">
-            		<ul class="list-unstyled">
-						<li class="pull-left">
-							<a href="https://www.facebook.com/Mister2Tone" class="btn-social btn-primary">
-								<span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
-								<h4 style="display:inline-block">Facebook</h4>
-						</li>
-						<li class="pull-left">
-							<a href="https://twitter.com/Mister2Tone" class="btn-social btn-primary">
-								<span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
-								<h4 style="display:inline-block">Twitter</h4>
-						</li>
-						<li class="pull-left">
-							<a href="https://github.com/Mister2Tone" class="btn-social btn-primary">
-								<span class="sr-only">Github</span><i class="fa fa-fw fa-github"></i></a>
-								<h4 style="display:inline-block">Github</h4>
-						</li>
-						<li class="pull-left">
-							<a href="https://steamcommunity.com/id/Mister2Tone/" class="btn-social btn-primary">
-								<span class="sr-only">Steam</span><i class="fa fa-fw fa-steam-square"></i></a>
-								<h4 style="display:inline-block">Steam</h4>
-						</li>
-						<li class="pull-left">
-							<a href="https://www.youtube.com/channel/UCmrVHLjuFksn02yLRiw01kA" class="btn-social btn-primary">
-								<span class="sr-only">Youtube</span><i class="fa fa-fw fa-youtube-square"></i></a>
-								<h4 style="display:inline-block">Youtube</h4>
-						</li>
-					</ul>
-            	</div>
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    <form name="sentMessage" id="contactForm" action="/contact/getText" method="GET" role="form" novalidate>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" placeholder="Name" name="name" id="name">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" placeholder="Email Address" name="email" id="email">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" class="form-control" placeholder="Phone Number" name="phone" id="phone">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="fsorm-group col-xs-12 text-center">
+                                <button type="submit" class="btn btn-success btn-lg">Send</button>
+                                <button type="button" class="btn btn-primary btn-lg" onclick="js_clear()">Clear</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
+
+    <script type="text/javascript">
+        function js_clear(){
+            document.location = "/contact/clearSession";
+        }
+    </script>
 @endsection

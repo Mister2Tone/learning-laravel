@@ -23,6 +23,9 @@ Route::get('/about', function (){
 	return view('about');
 });
 
+// Contact
 Route::get('/contact', function (){
 	return view('contact');
 });
+Route::get('/contact/getText', 'ContactController@getText');
+Route::get('/contact/clearSession', 'ContactController@clearSession');

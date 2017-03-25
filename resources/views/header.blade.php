@@ -34,7 +34,27 @@
                 <div class="col-lg-12">
                     <img class="img-responsive img-rounded" src="img/myself2.png" alt="myself2" width="256" height="256">
                     <div class="intro-text">
+                        @if(session('name'))
+                        <h1 class="name">Nice 2 Meet u </br><i class="fa fa-1x fa-user"></i> {{session('name')}}</h1>
+                        @else
                         <h1 class="name">Hi, I'm Pisit Tansri</h1>
+                        @endif
+                        
+                        @if(session('email'))
+                        <h5><i class="fa fa-1x fa-envelope-o"></i> {{session('email')}}</h5>
+                        @else
+                        @endif
+
+                        @if(session('phone'))
+                        <h5><i class="fa fa-1x fa-phone"></i> {{session('phone')}}</h5>
+                        @else
+                        @endif
+
+                        @if(Request::cookie('date'))
+                        <h5><i class="fa fa-1x fa-phone"></i> Send on time: {{Request::cookie('date')}}</h5>
+                        @else
+                        @endif
+
                         <hr class="star-light">
                         <span class="skills">Web Developer - Expert Gamer - Amatuar Guitarist</span>
                     </div>
