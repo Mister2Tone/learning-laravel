@@ -51,7 +51,7 @@
                         @endif
 
                         @if(Request::cookie('date'))
-                        <h5><i class="fa fa-1x fa-phone"></i> Send on time: {{Request::cookie('date')}}</h5>
+                        <h5><i class="fa fa-1x fa-clock-o"></i> Send on time: {{Request::cookie('date')}}</h5>
                         @else
                         @endif
 
