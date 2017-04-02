@@ -11,6 +11,8 @@ class ContactController extends Controller
 {
     public function getText(Request $request){
 
+        $request->flash();
+
     	$rules = [
             'name' => 'required|alpha|min:2|max:20|filled',
             'email' => 'required|email',

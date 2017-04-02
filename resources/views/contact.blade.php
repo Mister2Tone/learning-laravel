@@ -3,7 +3,9 @@
 @section('title','Contact')
 
 @section('content')
- 	<section id="contact" name="alertValidate">
+    
+ 	<a name="alertValidate"></a>
+    <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -29,21 +31,21 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" placeholder="Name" name="name" id="name">
+                                <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="{{ old('name') }}">
                                 <p class="help-block text-danger" id="nameHelp"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="email">Email Address</label>
-                                <input type="text" class="form-control" placeholder="Email Address" name="email" id="email">
+                                <input type="text" class="form-control" placeholder="Email Address" name="email" id="email" value="{{ old('email') }}">
                                 <p class="help-block text-danger" id="emailHelp"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="phone">Phone Number</label>
-                                <input type="text" class="form-control" placeholder="Phone Number" name="phone" id="phone">
+                                <input type="text" class="form-control" placeholder="Phone Number" name="phone" id="phone" value="{{ old('phone') }}">
                                 <p class="help-block text-danger" id="phoneHelp"></p>
                             </div>
                         </div>
