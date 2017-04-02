@@ -5,19 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Cookie;
+use Validator;
+
 class ContactController extends Controller
 {
     public function getText(Request $request){
-    	$name = $request->input('name');
-    	$email = $request->input('email');
-    	$phone = $request->input('phone');
 
-    	session(['name' => $name, 'email' => $email, 'phone' => $phone]);
+    	$rules = [
+            'name' => 'required|alpha|min:2|max:20|filled',
+            'email' => 'required|email',
+            'phone' => 'required|numeric|digits_between:9,11'
+        ];
 
-    	$date = date('d-m-Y H:i:s');
-    	$cookie = cookie('date',$date,3600);
+        $validator = Validator::make($request->all(), $rules);
 
-    	return redirect('contact')->withCookie($cookie);
+        if( $validator->passes() ){
+
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $phone = $request->input('phone');
+
+            session(['name' => $name, 'email' => $email, 'phone' => $phone]);
+
+            $date = date('d-m-Y H:i:s');
+            $cookie = cookie('date',$date,3600);
+
+            return redirect('contact')->withCookie($cookie);    
+        }
+        else{
+
+            return redirect('contact'.'#alertValidate')->withErrors( $validator->messages() );
+        }
+        
     }
 
     public function clearSession(Request $request){

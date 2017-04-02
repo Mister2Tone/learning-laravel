@@ -27,5 +27,5 @@ Route::get('/about', function (){
 Route::get('/contact', function (){
 	return view('contact');
 });
-Route::get('/contact/getText', 'ContactController@getText');
+Route::post('/contact/getText', 'ContactController@getText');
 Route::get('/contact/clearSession', 'ContactController@clearSession');
