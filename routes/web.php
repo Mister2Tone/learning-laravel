@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Route::get('/portfolio', function (){
 	return view('portfolio');
@@ -23,9 +23,11 @@ Route::get('/about', function (){
 	return view('about');
 });
 
-// Contact
-Route::get('/contact', function (){
-	return view('contact');
-});
-Route::post('/contact/getText', 'ContactController@getText');
+// Route::get('/contact', function (){
+// 	return view('contact');
+// });
+// Route::post('/contact/getText', 'ContactController@getText');
+
 Route::get('/contact/clearSession', 'ContactController@clearSession');
+
+Route::resource('/contacts', 'ContactsController');

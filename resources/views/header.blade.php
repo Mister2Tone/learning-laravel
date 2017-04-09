@@ -22,7 +22,7 @@
                     </li>
                     <li class="page-scroll">
                         <a href="#contact" style="display:none;">Contact</a>
-                        <a href="{{ url('contact') }}">Contact</a>
+                        <a href="{{ url('contacts') }}">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -32,7 +32,7 @@
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive img-rounded" src="img/myself2.png" alt="myself2" width="256" height="256">
+                    <img class="img-responsive img-rounded" src="{{asset('img/myself2.png')}}" alt="myself2" width="256" height="256">
                     <div class="intro-text">
                         @if(session('name'))
                         <h1 class="name">Nice 2 Meet u </br><i class="fa fa-1x fa-user"></i> {{session('name')}}</h1>

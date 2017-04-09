@@ -27,7 +27,7 @@
                     @endif
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" id="contactForm" action="/contact" method="POST" role="form" novalidate>
+                    <form name="sentMessage" id="contactForm" action="#" method="POST" role="form" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="name">Name</label>
@@ -92,12 +92,13 @@
             // }
                 
             // else{
-                document.getElementById("contactForm").action = "/contact/getText";
+                document.getElementById("contactForm").action = "/contacts";
                 document.getElementById("submitBtn").type = "submit";
                 document.getElementById("contactForm").submit();
             //}
                 
 
         }
+
     </script>
 @endsection
