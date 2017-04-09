@@ -54,8 +54,8 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="fsorm-group col-xs-12 text-center">
-                                <button type="button" class="btn btn-success btn-lg" id="submitBtn" onclick="validation_form()">Send</button>
-                                <button type="button" class="btn btn-primary btn-lg" onclick="js_clear()">Clear</button>
+                                <button type="button" class="btn btn-primary btn-lg" id="submitBtn" onclick="validation_form()">Send</button>
+                               <!--  <button type="button" class="btn btn-primary btn-lg" onclick="js_clear()">Clear</button> -->
                             </div>
                         </div>
                     </form>

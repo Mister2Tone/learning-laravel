@@ -13,12 +13,15 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                	<table class="table">
+                	@if(count($contacts) == 0) 
+                        <h1>Don't have data in DB, please inform your contact first.</h1>
+                    @endif
+                    <table class="table table-hover table-bordered">
                 		<tr>
-                			<td>#</td>
-                			<td>Name</td>
-                			<td>Email</td>
-                			<td>Phone</td>
+                			<th>#</th>
+                			<th>Name</th>
+                			<th>Email</th>
+                			<th>Phone</th>
                 		</tr>
 
                 		@foreach($contacts as $index => $item)
@@ -32,7 +35,7 @@
                 	</table>
                 	<div class="row">
                         <div class="fsorm-group col-xs-12 text-center">
-                            <button type="button" class="btn btn-success btn-lg" id="createBtn" onclick="create_contact()">Create</button>
+                            <button type="button" class="btn btn-primary btn-lg" id="createBtn" onclick="create_contact()">Create</button>
                         </div>
                     </div>
                   
