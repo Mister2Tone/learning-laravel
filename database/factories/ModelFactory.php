@@ -22,3 +22,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Contact::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName($gender = null) ,
+        'email' => $faker->unique()->safeEmail ,
+        'phone' => $faker->numberBetween($min = 66800000001, $max = 66999999999) ,
+        'created_at' => $faker->dateTime($max = 'now', $timezone = date_default_timezone_get()) ,
+        'updated_at' => date("Y-m-d H:i:s") ,
+    ];
+});
