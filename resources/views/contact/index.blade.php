@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'Contact List')
+@section('title', 'Contact')
 
 @section('content')
 	<section id="contact">
@@ -22,6 +22,7 @@
                 			<th>Name</th>
                 			<th>Email</th>
                 			<th>Phone</th>
+                            <th>Operation</th>
                 		</tr>
 
                 		@foreach($contacts as $index => $item)
@@ -30,6 +31,15 @@
                 			<td>{{ $item->name }}</td>
                 			<td>{{ $item->email }}</td>
                 			<td>{{ $item->phone }}</td>
+                            <td>
+                                <form action="contacts/{{$item->id}}" method="post" class="form-inline">
+                                    <a href="contacts/{{$item->id}}" class="btn btn-primary">Show</a>
+                                    <a href="contacts/{{$item->id}}/edit" class="btn btn-warning">Edit</a>
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                 		</tr>
     					@endforeach 
                 	</table>

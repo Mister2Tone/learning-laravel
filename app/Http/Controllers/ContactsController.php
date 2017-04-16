@@ -14,17 +14,16 @@ class ContactsController extends Controller
     public function index()
     {
         $contacts = DB::table('contacts')->get();
-        return view('contacts')->with('contacts', $contacts);
+        return view('contact.index')->with('contacts', $contacts);
     }
 
     public function create()
     {
-        return view('create-contact');
+        return view('contact.create');
     }
 
     public function store(Request $request)
     {
-        
 
         $request->flash();
 
@@ -49,21 +48,44 @@ class ContactsController extends Controller
 
     public function show($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+        return view('contact.show')->with('contact',$contact);
     }
 
     public function edit($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+        return view('contact.edit')->with('contact',$contact)
+                                    ->with('id',$id);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $request->flash();
+
+        $rules = [
+            'name' => 'required|alpha|min:2|max:20|filled',
+            'email' => 'required|email',
+            'phone' => 'required|numeric|digits_between:9,11'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if( $validator->passes() ){
+
+            $contact = Contact::findOrFail($id);
+            $contact->update($request->all());
+            return redirect('contacts');  
+        }
+        else{
+
+            return redirect('contacts/$id/edit'.'#alertValidate')->withErrors( $validator->messages() );
+        }
     }
 
     public function destroy($id)
     {
-        //
+        Contact::destroy($id);
+        return redirect('contacts');
     }
 }
