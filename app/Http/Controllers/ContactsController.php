@@ -11,10 +11,16 @@ use App\Contact;
 
 class ContactsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = DB::table('contacts')->get();
-        return view('contact.index')->with('contacts', $contacts);
+        $PAGE_CAPACITY = 4;
+        $contacts = Contact::paginate($PAGE_CAPACITY);
+        $page = $request->input('page');
+        $page = ($page != null) ? $page:1;
+
+        return view('contact.index')->with('contacts', $contacts)
+                                    ->with('page',$page)
+                                    ->with('PAGE_CAPACITY',$PAGE_CAPACITY);
     }
 
     public function create()

@@ -27,11 +27,11 @@
 
                 		@foreach($contacts as $index => $item)
                 		<tr>
-                			<td>{{++$index}}</td>
+                			<td>{{ $PAGE_CAPACITY*($page-1) + ($index+1) }}</td>
                 			<td>{{ $item->name }}</td>
                 			<td>{{ $item->email }}</td>
                 			<td>{{ $item->phone }}</td>
-                            <td>
+                            <td>    
                                 <form action="contacts/{{$item->id}}" method="post" class="form-inline">
                                     <a href="contacts/{{$item->id}}" class="btn btn-primary">Show</a>
                                     <a href="contacts/{{$item->id}}/edit" class="btn btn-warning">Edit</a>
@@ -43,6 +43,10 @@
                 		</tr>
     					@endforeach 
                 	</table>
+                    <div class="text-center">
+                        {{ $contacts->links() }}
+                    </div>
+                    
                 	<div class="row">
                         <div class="fsorm-group col-xs-12 text-center">
                             <button type="button" class="btn btn-primary btn-lg" id="createBtn" onclick="create_contact()">Create</button>
