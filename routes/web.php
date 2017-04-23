@@ -15,12 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/portfolio', function (){
-	return view('portfolio');
-});
-
-Route::get('/about', function (){
-	return view('about');
-});
-
 Route::resource('/contacts', 'ContactsController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

@@ -3,6 +3,7 @@
 @section('title', 'Contact')
 
 @section('content')
+    <div style="margin-top:3em;"></div>
 	<section id="contact">
         <div class="container">
             <div class="row">

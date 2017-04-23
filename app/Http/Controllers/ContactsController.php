@@ -11,6 +11,11 @@ use App\Contact;
 
 class ContactsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         $PAGE_CAPACITY = 4;
