@@ -8,18 +8,19 @@ use Illuminate\Support\Facades\DB;
 use Redirect;
 use Validator;
 use App\Contact;
+use App\Tag;
 
 class ContactsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index(Request $request)
     {
         $PAGE_CAPACITY = 4;
-        $contacts = Contact::paginate($PAGE_CAPACITY);
+        $contacts = Contact::orderBy('updated_at','desc')->paginate($PAGE_CAPACITY);
         $page = $request->input('page');
         $page = ($page != null) ? $page:1;
 
@@ -30,7 +31,8 @@ class ContactsController extends Controller
 
     public function create()
     {
-        return view('contact.create');
+        $tags = Tag::all();
+        return view('contact.create', compact('tags'));
     }
 
     public function store(Request $request)
@@ -49,6 +51,9 @@ class ContactsController extends Controller
         if( $validator->passes() ){
 
             Contact::create($request->all());
+            $tags = $request->input('tags');
+            $contact = Contact::all()->last();
+            $contact->tags()->attach($tags);
             return redirect('contacts');   
         }
         else{
@@ -66,8 +71,10 @@ class ContactsController extends Controller
     public function edit($id)
     {
         $contact = Contact::findOrFail($id);
+        $tags = Tag::all();
         return view('contact.edit')->with('contact',$contact)
-                                    ->with('id',$id);
+                                    ->with('id',$id)
+                                    ->with('tags',$tags);
     }
 
     public function update(Request $request, $id)
@@ -85,6 +92,12 @@ class ContactsController extends Controller
         if( $validator->passes() ){
 
             $contact = Contact::findOrFail($id);
+            $tags = $request->input('tags');
+            if($tags == null)
+                $contact->tags()->detach(Tag::all());
+            else
+                $contact->tags()->sync($tags);
+
             $contact->update($request->all());
             return redirect('contacts');  
         }

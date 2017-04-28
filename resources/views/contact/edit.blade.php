@@ -27,6 +27,11 @@
                     @endif
                     
                     <form name="sentMessage" id="contactForm" action="/contacts/{{$contact->id}}" method="POST" role="form" novalidate>
+                        <div>
+                            <h3><b>From: </b> {{ Auth::user()->name }} <br></h3>
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="ip" value="{{ Request::getClientIp() }}">
+                        </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="name">Name</label>
@@ -49,6 +54,15 @@
                             </div>
                         </div>
                         <input type="hidden" name="_method" value="PUT">
+                        @foreach($tags as $tag)
+                            {{$chk=''}}
+                            @foreach($contact->tags as $ctag)
+                                @if( $tag->id == $ctag->id)
+                                    {{$chk = 'checked'}}
+                                @endif
+                            @endforeach
+                            <input type="checkbox" name="tags[]" value="{{$tag->id}}" {{$chk}}> {{$tag->name}} &nbsp;
+                        @endforeach
                         {{csrf_field()}}
                         <br>
                         <div id="success"></div>

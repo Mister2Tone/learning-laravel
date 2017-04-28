@@ -29,6 +29,11 @@
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="sentMessage" id="contactForm" action="#" method="POST" role="form" novalidate>
                         <div class="row control-group">
+                            <h3><b>From: </b> {{ Auth::user()->name }} <br></h3>
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="ip" value="{{ Request::getClientIp() }}">
+                        </div>
+                        <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="{{ old('name') }}">
@@ -49,6 +54,11 @@
                                 <p class="help-block text-danger" id="phoneHelp"></p>
                             </div>
                         </div>
+                        @foreach( $tags as $tag )
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="tags[]" value="{{$tag->id}}"> {{$tag->name}} &nbsp;
+                            </label>
+                        @endforeach
                         {{csrf_field()}}
                         <br>
                         <div id="success"></div>
@@ -58,6 +68,7 @@
                                <!--  <button type="button" class="btn btn-primary btn-lg" onclick="js_clear()">Clear</button> -->
                             </div>
                         </div>
+                        
                     </form>
                 </div>
             </div>
